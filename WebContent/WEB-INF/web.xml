@@ -9,12 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
+<!--   <servlet>
     <servlet-name>getip</servlet-name>
     <servlet-class>com.bozhi.servlet.getIpServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>getip</servlet-name>
     <url-pattern>/getip</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 </web-app>

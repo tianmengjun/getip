@@ -18,10 +18,30 @@
 
 <h5>-------------打印header---------------</h5>
 
+<h5>浏览器支持的语言和区域(accept-language):${header['accept-language']}</h5>
+<h5>cookie:${header['cookie']}</h5>
+<h5>host:${header['host']}</h5>
+<h5>缓存机制（cache-control）：${header['cache-control']}</h5>
+<h5>connection:${header['connection']}</h5>
+<h5>upgrade-insecure-requests:${header['upgrade-insecure-requests']}</h5>
+<h5>请求编码类型（accept-encoding）：${header['accept-encoding']}</h5>
+<h5>用户代理（user-agent）：${header['user-agent']}</h5>
+<h5>请求数据类型（accept）:${header['accept']}</h5>
+<h5></h5>
+
   <c:set value="${fn:split(header,',')}" var="headerList"/>
     <c:forEach var="head" items="${headerList }">
         ${head}<br/>
         </c:forEach>
+        
+        <c:choose>
+    <c:when test="${fn:contains(header['user-agent'], 'Chrome')}">
+        你使用的是 Chrome浏览器
+    </c:when>
+    <c:otherwise>
+        You are using some browser other than IE.
+    </c:otherwise>
+</c:choose>
         
 <h5>--------------打印list----------------</h5>
 <% List<String> list = new ArrayList<>();
