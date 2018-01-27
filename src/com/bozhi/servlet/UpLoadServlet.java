@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
@@ -14,16 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-/*
- *  fileSizeThreshold: 我们可以指定大小的阈值后，该文件将被写入磁盘。大小值是字节，所以1024 * 1024 * 10是MB。
-    location: 文件将被存储在目录默认路径下，它的默认值是“”。
-    maxFileSize: 最大允许上传文件的大小，它的值是以字节形式提供的。它的默认值是-1L 无限。
-    maxRequestSize: 允许的最大值为multipart/form-data的请求。默认值为-1L，无限。
+/**   
+* @version 1.0   
+* @author TianMengJun
+* @since JDK 1.8.0_20
+* Create at:   2018年1月26日 下午6:14:07   
+* Description:  
+*
+*@param     
+*/
 
- @MultipartConfig(fileSizeThreshold=1024*1024*10,    // 10 MB 
-                 maxFileSize=1024*1024*50,          // 50 MB
-                 maxRequestSize=1024*1024*100)      // 100 MB
- */
 @WebServlet("/UpLoadServlet")
 @MultipartConfig
 public class UpLoadServlet extends HttpServlet {
@@ -34,14 +35,21 @@ public class UpLoadServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		// 获取文件上传组件
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		Part part = null;
 		Part part1 = null;
 		InputStream inputStream = null;
 		FileOutputStream outputStream = null;
 		try {
 			part = request.getPart("file");
+			System.out.println(request.getParameter("names"));
 			part1=request.getPart("names");
-			System.out.println(part1);
+			System.out.println(part1.);
 			//Collection<Part> parts =request.getParts();
 		
 			// 获取头信息的request playload 内容
